@@ -90,28 +90,28 @@
                         <div class="collapse navbar-collapse mean-menu">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active"
+                                    <a href="#1" class="nav-link active"
                                         >Về chúng tôi
                                         <!-- <i class="bx bx-chevron-down"></i> -->
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link"
+                                    <a href="#2" class="nav-link"
                                         >Lĩnh vực hoạt động
                                         <!-- <i class="bx bx-chevron-down"></i> -->
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link"
+                                    <a href="#3" class="nav-link"
                                         >Các dự án đã triển khai
                                         <!-- <i class="bx bx-chevron-down"></i> -->
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link"
+                                    <a href="#4" class="nav-link"
                                         >Khách hàng
                                         <!-- <i class="bx bx-chevron-down"></i> -->
                                     </a>
@@ -352,7 +352,7 @@
         <!-- End Main Banner Area -->
 
         <!-- Start About Area -->
-        <section class="about-area ptb-100">
+        <section class="about-area ptb-100" id="1">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12">
@@ -365,7 +365,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-12" >
                         <div class="about-content">
                             <div class="content">
                                 <span class="sub-title"
@@ -734,7 +734,7 @@
         <!-- End History Area -->
 
         <!-- Start Service Area -->
-        <section class="history-area ptb-100 bg-fafafb">
+        <section class="history-area ptb-100 bg-fafafb" id="2">
             <div class="container">
                 <div class="section-title">
                     <span class="sub-title"
@@ -1017,7 +1017,7 @@
         <!-- End How It's Work Area -->
 
         <!-- Start Projects Area -->
-        <section class="projects-area pt-100 pb-70">
+        <section class="projects-area pt-100 pb-70" id="3">
             <div class="section-title">
                 <span class="sub-title"
                     ><img src="assets/img/star-icon.png" alt="image" />
@@ -1188,7 +1188,7 @@
         <!-- End Projects Area -->
 
         <!-- Start Testimonials Area -->
-        <section class="testimonials-area bg-f1f8fb">
+        <section class="testimonials-area bg-f1f8fb" id="4">
             <div class="container">
                 <div class="section-title">
                     <span class="sub-title"
@@ -1794,6 +1794,52 @@
         <!-- End Footer Area -->
 
         <div class="go-top"><i class="flaticon-up"></i></div>
+
+        <script>
+            $(document).ready(function () {
+                $("a[href*=#]").bind("click", function (e) {
+                    e.preventDefault(); // prevent hard jump, the default behavior
+
+                    var target = $(this).attr("href"); // Set the target as variable
+
+                    // perform animated scrolling by getting top-position of target-element and set it as scroll target
+                    $("html, body")
+                        .stop()
+                        .animate(
+                            {
+                                scrollTop: $(target).offset().top,
+                            },
+                            600,
+                            function () {
+                                location.hash = target; //attach the hash (#jumptarget) to the pageurl
+                            }
+                        );
+
+                    return false;
+                });
+            });
+
+            $(window)
+                .scroll(function () {
+                    var scrollDistance = $(window).scrollTop();
+
+                    // Show/hide menu on scroll
+                    //if (scrollDistance >= 850) {
+                    //		$('nav').fadeIn("fast");
+                    //} else {
+                    //		$('nav').fadeOut("fast");
+                    //}
+
+                    // Assign active class to nav links while scolling
+                    $(".page-section").each(function (i) {
+                        if ($(this).position().top <= scrollDistance) {
+                            $(".navigation a.active").removeClass("active");
+                            $(".navigation a").eq(i).addClass("active");
+                        }
+                    });
+                })
+                .scroll();
+        </script>
 
         <!-- Links of JS files -->
         <script src="assets/js/jquery.min.js"></script>
